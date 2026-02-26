@@ -1,6 +1,6 @@
-# Portfolio
+# Girish Yandigeri - Portfolio
 
-This portfolio is crafted using [Next.js](https://nextjs.org/)
+This portfolio is crafted using [Next.js](https://nextjs.org/) to showcase my projects, skills, and experience as a Backend Developer and MCA student at RVCE.
 
 ## 🖥️ Technologies Used
 

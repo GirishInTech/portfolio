@@ -2,35 +2,25 @@ import { type ExperienceShowcaseListItemProps } from "@/components/experience/ex
 
 export const EXPERIENCE: ExperienceShowcaseListItemProps[] = [
   {
-    title: "Software Developer",
+    title: "RISQ Software Engineer",
     organisation: {
-      name: "Skima",
-      href: "https://skima.ai/",
+      name: "Societe Generale Global Solutions Center",
+      href: "https://globalsolutioncenter.societegenerale.in/en/",
     },
-    date: "Oct 2023 - Present",
-    location: "Mumbai",
-    description: "Reactjs and Nextjs app development",
+    date: "Present",
+    location: "Bengaluru",
+    description:
+      "Working as a RISQ Software Engineer at Societe Generale Global Solutions Center, focusing on risk management systems, software development, and implementing robust solutions for global financial operations.",
   },
   {
-    title: "Engineering Trainee",
+    title: "Performance Testing Intern",
     organisation: {
-      name: "Hexaware",
-      href: "https://hexaware.com/",
+      name: "TECHasitis",
+      href: "https://techasritis.com/",
     },
-    date: "July 2023 - Sep 2023",
+    date: "April 2024 - May 2024",
     location: "Remote",
     description:
-      "Learned to work we monorepo and got to learn application architecture, scalling and build tooling to improve CI/CD of micro services.",
-  },
-  {
-    title: "Frontend Developer Intern",
-    organisation: {
-      name: "Master Infotech",
-      href: "https://masterinfotech.com/",
-    },
-    date: "Winter - 2022",
-    location: "Remote",
-    description:
-      "Worked on a team responsible for developing new features and updating old codebases to latest technologies. Learned alot about web development and CI/CD development cycle.",
+      "Explored website traffic simulation and load testing using JMeter and NeoLoad. Gained hands-on experience identifying performance bottlenecks, understanding early-stage DDoS prevention techniques, and learning the basics of manual and automation testing.",
   },
 ];

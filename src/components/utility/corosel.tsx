@@ -80,6 +80,7 @@ export default function Corosel({ aspectRatio = 1, images }: CoroselProps) {
         <button
           onClick={() => paginate(1)}
           className="hidden h-4 w-4 lg:inline-block"
+          title="Previous slide"
         >
           <BiSolidLeftArrow className="fill-zinc-700 dark:fill-zinc-400" />
         </button>
@@ -97,6 +98,7 @@ export default function Corosel({ aspectRatio = 1, images }: CoroselProps) {
         <button
           onClick={() => paginate(-1)}
           className="hidden h-4 w-4 lg:inline-block"
+          title="Next slide"
         >
           <BiSolidLeftArrow className="rotate-180 fill-zinc-700 dark:fill-zinc-400" />
         </button>

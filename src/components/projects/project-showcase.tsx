@@ -18,7 +18,7 @@ interface ProjectShowcaseProps {
 }
 
 export default function ProjectShowcase(props: ProjectShowcaseProps) {
-  const [currentImage, setCurrentImage] = useState<number>(0);
+  const [currentImage, setCurrentImage] = useState<number | null>(null);
 
   const images = useMemo(() => {
     return generateImageData(props.projects);
@@ -34,46 +34,48 @@ export default function ProjectShowcase(props: ProjectShowcaseProps) {
       <div className="relative mx-auto max-w-7xl">
         <div className="relative right-0 top-0 hidden lg:block">
           <AnimatePresence>
-            <motion.div
-              key={props.projects[currentImage].title}
-              initial={{ x: "100%", opacity: 0 }}
-              animate={{
-                x: "55%",
-                y: "50%",
-                opacity: 1,
-                transition: {
-                  duration: 0.5,
-                },
-              }}
-              transition={{
-                type: "spring",
-                stiffness: 100,
-              }}
-              className="absolute right-0 top-0 -z-50"
-            >
-              <Image
-                src={images[currentImage].LIGHT}
-                unoptimized
-                width={100}
-                height={100}
-                className="h-auto w-1/2 rounded-lg border border-zinc-300 shadow-lg dark:hidden dark:border-accent/50"
-                alt={`project ${currentImage}`}
-              />
-              {images[currentImage].DARK !== undefined && (
+            {currentImage !== null && (
+              <motion.div
+                key={props.projects[currentImage].title}
+                initial={{ x: "100%", opacity: 0 }}
+                animate={{
+                  x: "55%",
+                  y: "50%",
+                  opacity: 1,
+                  transition: {
+                    duration: 0.5,
+                  },
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: 100,
+                }}
+                className="absolute right-0 top-0 -z-50"
+              >
                 <Image
-                  src={images[currentImage].DARK!}
+                  src={images[currentImage].LIGHT}
                   unoptimized
                   width={100}
                   height={100}
-                  className="hidden h-auto w-1/2 rounded-lg border border-zinc-300 shadow-lg dark:inline-block dark:border-accent/20 dark:shadow-lg dark:shadow-emerald-400/5"
+                  className="h-auto w-1/2 rounded-lg border border-zinc-300 shadow-lg dark:hidden dark:border-accent/50"
                   alt={`project ${currentImage}`}
                 />
-              )}
-            </motion.div>
+                {images[currentImage].DARK !== undefined && (
+                  <Image
+                    src={images[currentImage].DARK!}
+                    unoptimized
+                    width={100}
+                    height={100}
+                    className="hidden h-auto w-1/2 rounded-lg border border-zinc-300 shadow-lg dark:inline-block dark:border-accent/20 dark:shadow-lg dark:shadow-emerald-400/5"
+                    alt={`project ${currentImage}`}
+                  />
+                )}
+              </motion.div>
+            )}
           </AnimatePresence>
         </div>
-        <h2 className="text-xl font-semibold text-accent sm:text-3xl">
-          My projects
+        <h2 className="bg-gradient-to-r from-accent to-purple-600 bg-clip-text text-2xl font-bold text-transparent sm:text-4xl">
+          Featured Projects
         </h2>
         <div className="hidden flex-col gap-6 py-14 sm:gap-8 sm:py-20 md:gap-10 lg:flex">
           {props.projects.map((proj, index) => (
@@ -90,7 +92,7 @@ export default function ProjectShowcase(props: ProjectShowcaseProps) {
             <Link
               key={proj.title}
               href={proj.href}
-              className="flex flex-col gap-1"
+              className="flex flex-col gap-3"
             >
               <div className="flex gap-2">
                 <span className="text-3xl font-semibold text-accent transition-colors duration-300 sm:text-4xl md:text-5xl lg:hidden">
@@ -103,6 +105,15 @@ export default function ProjectShowcase(props: ProjectShowcaseProps) {
                   {proj.title}
                 </span>
               </div>
+              {/* Project image */}
+              {proj.image?.LIGHT && (
+                <img
+                  src={proj.image.LIGHT}
+                  alt={proj.title + " image"}
+                  className="my-2 w-full max-w-xs self-center rounded-lg border border-zinc-300 shadow-md"
+                  style={{ maxHeight: "180px", objectFit: "cover" }}
+                />
+              )}
               <p className="flex max-w-xl flex-wrap gap-2 text-base font-semibold text-accent-foreground sm:text-lg">
                 {proj.tags.map((tag, index) => (
                   <span key={index}>#{tag}</span>

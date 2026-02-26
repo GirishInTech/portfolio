@@ -13,18 +13,19 @@ export default function Home() {
   return (
     <>
       <NextSeo
-        title="Amit Chauhan | Software Developer"
-        description="Explore the professional portfolio of Amit Chauhan, a skilled Software Developer with 2 years of hands-on experience. Discover innovative projects, expertise in modern web technologies, and a passion for creating seamless user experiences."
+        title="Girish Yandigeri | RISQ Software Engineer at Societe Generale"
+        description="Explore the professional portfolio of Girish Yandigeri, RISQ Software Engineer at Societe Generale Global Solutions Center. Discover innovative projects in Django, Machine Learning, Cloud Computing, and AI-powered applications."
         canonical={siteMetadata.siteUrl}
         openGraph={{
           url: siteMetadata.siteUrl,
-          title: "Amit Chauhan - Software Developer",
+          title:
+            "Girish Yandigeri - RISQ Software Engineer at Societe Generale",
           description:
-            "Dive into the world of web development with Amit Chauhan. Discover a Software Developer with 2 years of expertise, showcasing cutting-edge projects and a commitment to crafting exceptional user interfaces.",
+            "Dive into the world of backend development with Girish Yandigeri, RISQ Software Engineer at Societe Generale. Discover projects in Django, Python, AWS, Machine Learning, and building scalable AI-powered systems.",
           images: [
             {
               url: `${siteMetadata.siteUrl}${siteMetadata.twitterImage}`,
-              alt: "Amit Chauhan - Portfolio Image",
+              alt: "Girish Yandigeri - Portfolio Image",
             },
           ],
           siteName: siteMetadata.siteName,
@@ -37,7 +38,7 @@ export default function Home() {
           {
             property: "keywords",
             content:
-              "React Developer, Software Developer, Frontend Developer, Web Developer, JavaScript, HTML, CSS, Portfolio, UI/UX, React.js, Frontend Development, Web Development, JavaScript Developer, Responsive Design",
+              "Backend Developer, Django Developer, Python Developer, Machine Learning, AWS, Cloud Computing, Cybersecurity, AI, Full Stack, MCA Student, RVCE, Bengaluru, Portfolio",
           },
         ]}
       />

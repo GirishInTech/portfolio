@@ -18,40 +18,57 @@ export interface ProjectCardProps {
 export default function ProjectCard(props: ProjectCardProps) {
   return (
     <motion.div
-      initial={{ y: 80 }}
-      whileInView={{ y: 0 }}
+      initial={{ y: 80, opacity: 0 }}
+      whileInView={{ y: 0, opacity: 1 }}
       transition={{
         type: "spring",
-        duration: 0.4,
+        duration: 0.6,
       }}
-      className="w-full overflow-hidden rounded-lg border border-accent/20 bg-background shadow-md transition-shadow duration-150 hover:shadow-md hover:shadow-accent/20 dark:bg-zinc-800 dark:hover:shadow-lg"
+      className="group w-full overflow-hidden rounded-2xl border border-accent/30 bg-gradient-to-br from-background to-accent/5 shadow-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-accent/20 dark:from-zinc-900 dark:to-accent/10"
     >
       <Corosel images={props.imageUrl} aspectRatio={2.1} />
-      <div className="p-3 text-foreground sm:p-4">
+      <div className="p-4 text-foreground sm:p-6">
         <div className="flex items-center gap-3">
-          <span className="relative h-5 w-5">
-            <Image src={props.favicon} alt="logo" fill />
+          <span className="relative h-6 w-6 rounded-lg bg-accent/10 p-1">
+            <Image
+              src={props.favicon}
+              alt="logo"
+              fill
+              className="object-contain"
+            />
           </span>
-          <span className="text-sm font-semibold">{props.name}</span>
+          <span className="text-base font-bold tracking-tight">
+            {props.name}
+          </span>
         </div>
-        <div className="mt-3">
-          <p className="text-xs md:text-sm">{props.description}</p>
+        <div className="mt-4">
+          {Array.isArray(props.description) ? (
+            <ul className="list-disc pl-5 text-sm leading-relaxed text-muted-foreground md:text-base">
+              {props.description.map((item, idx) => (
+                <li key={idx}>{item}</li>
+              ))}
+            </ul>
+          ) : (
+            <p className="text-sm leading-relaxed text-muted-foreground md:text-base">
+              {props.description}
+            </p>
+          )}
         </div>
         <div className="mt-6 flex items-center justify-end gap-6">
           <a
             href={props.sourceCodeHref}
             target="_blank"
-            className="flex items-center gap-1 text-xs underline md:text-sm"
+            className="flex items-center gap-2 rounded-lg bg-accent/10 px-4 py-2 text-sm font-medium text-accent transition-all hover:bg-accent hover:text-accent-foreground"
           >
-            <GithubIcon className="h-5 w-5" /> Source code
+            <GithubIcon className="h-4 w-4" /> Code
           </a>
           {props.liveWebsiteHref && (
             <a
               href={props.liveWebsiteHref}
               target="_blank"
-              className="flex items-center gap-1 text-xs underline md:text-sm"
+              className="flex items-center gap-2 rounded-lg bg-accent px-4 py-2 text-sm font-medium text-accent-foreground transition-all hover:bg-accent/90"
             >
-              <FiExternalLink className="h-5 w-5" /> Live
+              <FiExternalLink className="h-4 w-4" /> Live Demo
             </a>
           )}
         </div>

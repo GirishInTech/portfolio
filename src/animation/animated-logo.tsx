@@ -8,8 +8,8 @@ export default function AnimatedLogo() {
     },
     visible: {
       pathLength: 1,
-      // Set fill as per your theme
-      fill: "#1f8d93",
+      // Set fill as per your theme - Updated for purple gradient theme with transparency
+      fill: "rgba(139, 92, 246, 0.7)",
     },
   };
 
@@ -18,11 +18,11 @@ export default function AnimatedLogo() {
       <motion.svg
         viewBox="0 0 450 450"
         xmlns="http://www.w3.org/2000/svg"
-        className="h-full w-full fill-accent stroke-accent"
+        className="h-full w-full fill-accent/70 stroke-accent/80"
       >
         <motion.path
-          d="M321.955 420L179.465 127.143L224.998 36.1755L416.91 420H321.955ZM204.867 263.253L128.055 420H33.0897L158.769 168.608L204.867 263.253Z"
-          strokeWidth="15"
+          d="M350 225H280V280H325V330C325 355 305 375 280 375H170C145 375 125 355 125 330V120C125 95 145 75 170 75H280C305 75 325 95 325 120V145H375V120C375 67 332 25 280 25H170C117 25 75 67 75 120V330C75 383 117 425 170 425H280C332 425 375 383 375 330V225H350Z"
+          strokeWidth="25"
           variants={iconVariant}
           initial="hidden"
           animate="visible"

@@ -38,11 +38,11 @@ export default function ContactButton() {
 
       <button
         ref={refSendBtn}
-        className="inline-flex items-center gap-2 rounded-md bg-background px-3 py-2 text-accent transition-transform duration-150 focus-within:scale-[1.05] hover:scale-[1.05] hover:bg-foreground hover:text-background"
+        className="inline-flex items-center gap-3 rounded-xl bg-background/90 px-6 py-3 font-bold text-accent shadow-xl backdrop-blur-sm transition-all duration-300 focus-within:scale-110 hover:scale-110 hover:bg-background hover:shadow-2xl"
         onClick={() => setIsOpenModal(true)}
       >
         <MailIcon className="h-6 w-6 sm:h-7 sm:w-7 lg:h-9 lg:w-9" />
-        <span className="text-base font-semibold sm:text-lg lg:text-xl">
+        <span className="text-base font-bold sm:text-lg lg:text-xl">
           Send Message
         </span>
       </button>

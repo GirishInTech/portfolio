@@ -42,7 +42,7 @@ export default function Navbar(props: NavbarProps) {
             <AnimatedLogo />
           </div>
         </Link>
-        <nav className="hidden items-center gap-2 rounded-full px-2 py-2 shadow-md ring-1 ring-zinc-200 backdrop-blur-md dark:ring-accent/50 md:flex">
+        <nav className="hidden items-center gap-2 rounded-2xl border border-accent/20 bg-background/80 px-3 py-2 shadow-lg backdrop-blur-xl dark:bg-zinc-900/80 md:flex">
           <ul className="flex gap-2 text-sm font-medium">
             {props.routes.map((_link, index) => {
               return (
@@ -54,9 +54,9 @@ export default function Navbar(props: NavbarProps) {
                     href={_link.href}
                     className={classNames(
                       pathName === _link.href
-                        ? "font-semibold text-background dark:hover:text-foreground"
-                        : "text-foreground",
-                      "group relative mx-3 rounded-full px-3 py-2 transition-colors duration-200",
+                        ? "font-bold text-accent-foreground"
+                        : "text-foreground hover:text-accent",
+                      "group relative mx-2 rounded-xl px-4 py-2 transition-all duration-300",
                     )}
                   >
                     {_link.href === pathName && (
@@ -71,7 +71,7 @@ export default function Navbar(props: NavbarProps) {
                             },
                           },
                         }}
-                        className="absolute inset-0 -z-10 rounded-full bg-accent group-hover:bg-accent/80"
+                        className="absolute inset-0 -z-10 rounded-xl bg-gradient-to-r from-accent to-purple-600 group-hover:from-accent/90 group-hover:to-purple-600/90"
                       ></motion.span>
                     )}
                     {_link.title}

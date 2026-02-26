@@ -4,25 +4,25 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    --background: 38 45% 98%;
+    --foreground: 222 47% 11%;
     --border: 240 5.9% 90%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --accent: 183 65% 35%;
-    --accent-foreground: 240 5.9% 10%;
+    --accent: 262 83% 58%;
+    --accent-foreground: 0 0% 100%;
     --muted: 240 4.8% 95.9%;
     --muted-foreground: 240 3.8% 46.1%;
   }
 
   .dark {
-    --background: 240 10% 3.9%;
+    --background: 222 47% 11%;
     --foreground: 0 0% 98%;
     --border: 240 3.7% 15.9%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --accent: 183 63% 40%;
-    --accent-foreground: 0 0% 98%;
+    --accent: 266 85% 58%;
+    --accent-foreground: 0 0% 100%;
     --muted: 240 3.7% 15.9%;
     --muted-foreground: 240 5% 64.9%;
   }
@@ -32,5 +32,16 @@
   }
   body {
     @apply min-h-screen bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .text-outline-accent {
+    -webkit-text-stroke: 2px hsl(var(--accent));
+    color: transparent;
+  }
+  .skills-outline-text {
+    -webkit-text-stroke: 2px hsl(var(--accent));
+    color: transparent;
   }
 }

@@ -2,36 +2,25 @@ import { type ExperienceShowcaseListItemProps } from "@/components/experience/ex
 
 export const EDUCATION: ExperienceShowcaseListItemProps[] = [
   {
-    title: "Bachelor Of Engineering in Electronics and Telecommunication",
+    title: "Master of Computer Applications (MCA)",
     organisation: {
-      name: "Rizvi College Of Engineering",
-      href: "https://eng.rizvi.edu.in/",
+      name: "RV College of Engineering (RVCE)",
+      href: "https://www.rvce.edu.in/",
     },
-    date: "2019-2023",
-    location: "Bandra, Mumbai",
+    date: "2024 - Ongoing",
+    location: "Bengaluru, Karnataka",
     description:
-      "Relevant courses included Data Structures and Algorithms, Web Design, Cloud Computing, Artificial Neural Network and Database Management.",
+      "CGPA: 8.62 (2nd Sem). Affiliated to VTU, Belagavi, Karnataka.",
   },
   {
-    title: "Higher Secondary School",
+    title: "Bachelor of Computer Applications (BCA)",
     organisation: {
-      name: "Mithibai College",
-      href: "https://www.mithibai.ac.in/",
+      name: "Basaveshwar Science College",
+      href: "https://www.bvvsbscbgk.org/",
     },
-    date: "2016-2018",
-    location: "Vile Parle, Mumbai",
+    date: "2021-2024",
+    location: "Bagalkot, Karnataka",
     description:
-      "Completed the course in Electronics Bifocal Science with 68%. Started freelancing making 3D assets for games. Got interested in game development and learned unity and c#",
-  },
-  {
-    title: "Secondary School Education",
-    organisation: {
-      name: "Holy Family High School",
-      href: "https://holyfamilyandheri.org/",
-    },
-    date: "2017-2018",
-    location: "Andheri, Mumbai",
-    description:
-      "Learned good values,dedication and disciplne. Played district football for 5 years.",
+      "CGPA: 9.06. Affiliated to Rani Channamma University, Belagavi, Karnataka.",
   },
 ];
