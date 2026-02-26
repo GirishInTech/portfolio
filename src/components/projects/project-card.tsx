@@ -10,7 +10,7 @@ export interface ProjectCardProps {
   name: string;
   favicon: string;
   imageUrl: string[];
-  description: string;
+  description: string | string[];
   sourceCodeHref: string;
   liveWebsiteHref?: string;
 }

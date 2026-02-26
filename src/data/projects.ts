@@ -38,7 +38,10 @@ export const PROJECTS_CARD: ProjectCardProps[] = [
   {
     name: "ParlorPal - AI-Powered Growth Engine",
     favicon: "/images/projects/logos/jsontree.ico",
-    imageUrl: ["/images/projects/images/parlorpalHome.png"],
+    imageUrl: [
+      "/images/projects/images/parlorpalHome.png",
+      "/images/projects/images/parlorpal2.png",
+    ],
     description: [
       "Top 10 finalist at TeXpedition 2025 showcased at Epsilon India, Bengaluru.",
       "Full-stack Django app using Vertex AI, Cohere & Gemini APIs for AI content and chatbot features.",
@@ -50,7 +53,10 @@ export const PROJECTS_CARD: ProjectCardProps[] = [
   {
     name: "CivicScan - Geospatial Cleanliness System",
     favicon: "/images/projects/logos/kanban.ico",
-    imageUrl: ["/images/projects/images/civicscanHome.png"],
+    imageUrl: [
+      "/images/projects/images/civicscanHome.png",
+      "/images/projects/images/civicscanmap.png",
+    ],
     description: [
       "Django web app to report cleanliness issues with location, image upload, and status classification.",
       "Uses Leaflet.js for interactive city map, Cloudinary for storage, and reverse geocoding for addresses.",
@@ -73,7 +79,10 @@ export const PROJECTS_CARD: ProjectCardProps[] = [
   {
     name: "PizzaSalesML - Sales Prediction & Clustering",
     favicon: "/images/projects/logos/stockpredictor.ico",
-    imageUrl: ["/images/projects/stockPredictor.webp"],
+    imageUrl: [
+      "/images/projects/images/pizza1.png",
+      "/images/projects/images/pizza2.png",
+    ],
     description: [
       "Streamlit dashboard for pizza sales using EDA, K-Means clustering, and Decision Tree classification.",
       "Segmented customers, predicted categories, and visualized insights with WordClouds and summaries.",

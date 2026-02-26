@@ -17,7 +17,7 @@ export type ProjectShowcaseListItem = {
 
 export interface ProjectShowcaseListProps {
   data: ProjectShowcaseListItem;
-  activeProject: number;
+  activeProject: number | null;
   toggleList: (index: number) => void; //eslint-disable-line no-unused-vars
 }
 

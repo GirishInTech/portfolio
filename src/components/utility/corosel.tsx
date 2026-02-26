@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { AnimatePresence, AnimationProps, motion, wrap } from "framer-motion";
 import { BiSolidLeftArrow } from "react-icons/bi";
@@ -34,9 +34,16 @@ const swipePower = (offset: number, velocity: number) => {
 export type CoroselProps = {
   aspectRatio: number;
   images: string[];
+  autoPlay?: boolean;
+  interval?: number;
 };
 
-export default function Corosel({ aspectRatio = 1, images }: CoroselProps) {
+export default function Corosel({
+  aspectRatio = 1,
+  images,
+  autoPlay = true,
+  interval = 3000,
+}: CoroselProps) {
   const [[page, direction], setPage] = useState([0, 0]);
 
   const imageIndex = wrap(0, images.length, page);
@@ -44,6 +51,14 @@ export default function Corosel({ aspectRatio = 1, images }: CoroselProps) {
   const paginate = (newDirection: number) => {
     setPage([page + newDirection, newDirection]);
   };
+
+  useEffect(() => {
+    if (!autoPlay || images.length <= 1) return;
+    const timer = setInterval(() => {
+      setPage(([prevPage]) => [prevPage + 1, 1]);
+    }, interval);
+    return () => clearInterval(timer);
+  }, [autoPlay, interval, images.length]);
 
   return (
     <div className="relative w-full overflow-hidden" style={{ aspectRatio }}>
