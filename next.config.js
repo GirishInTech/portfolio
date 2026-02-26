@@ -1,8 +1,15 @@
-const withBundleAnalyzer = require("@next/bundle-analyzer")({
-  enabled: process.env.ANALYZE === "true",
-});
-
 /** @type {import('next').NextConfig} */
+
+let withBundleAnalyzer = (config) => config;
+
+// Only load analyzer when explicitly enabled
+if (process.env.ANALYZE === "true") {
+  const bundleAnalyzer = require("@next/bundle-analyzer")({
+    enabled: true,
+  });
+  withBundleAnalyzer = bundleAnalyzer;
+}
+
 const nextConfig = withBundleAnalyzer({
   output: process.env.BUILD_STANDALONE === "true" ? "standalone" : undefined,
   reactStrictMode: true,
@@ -11,13 +18,14 @@ const nextConfig = withBundleAnalyzer({
     dirs: ["src"],
   },
   images: {
-    domains: ["https://flagcdn.com"],
+    domains: ["flagcdn.com"],
   },
   webpack: (config) => {
     config.module.rules.push({
       test: /\.svg$/i,
       use: ["@svgr/webpack"],
     });
+
     config.resolve.fallback = {
       fs: false,
       net: false,
