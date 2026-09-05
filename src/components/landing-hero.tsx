@@ -150,10 +150,16 @@ export default function LandingHero() {
               </FadeUp>
 
               <FadeUp key="role" duration={0.6} delay={0.2}>
-                <div className="mt-5 flex items-center gap-3">
-                  <div className="h-px w-8 bg-accent" />
-                  <span className="text-base font-semibold text-muted-foreground sm:text-lg">
-                    Software Engineer at{" "}
+                <div className="mt-5 flex flex-wrap items-center gap-3">
+                  <div className="h-px w-8 shrink-0 bg-accent" />
+                  <span className="inline-flex flex-wrap items-center gap-x-2 gap-y-1 text-base font-semibold text-muted-foreground sm:text-lg">
+                    Software Engineer at
+                    <img
+                      src="/images/societe-generale-logo.jpg"
+                      alt="Societe Generale logo"
+                      loading="lazy"
+                      className="h-[1.7em] w-auto rounded-[4px] object-contain"
+                    />
                     <span className="text-accent">Societe Generale</span>
                   </span>
                 </div>
