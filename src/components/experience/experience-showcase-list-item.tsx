@@ -14,7 +14,7 @@ function ShowCaseLiIcon(props: ExperienceListIconProps) {
     layoutEffect: false,
   });
   return (
-    <figure className="absolute left-0 stroke-zinc-900">
+    <figure className="absolute left-0 hidden stroke-zinc-900 sm:block">
       <svg width="75" height="75" viewBox="0 0 100 100">
         <circle
           cx="50"
@@ -53,7 +53,10 @@ export default function ExperienceShowcaseListItem(
 ) {
   const ref = useRef(null);
   return (
-    <li ref={ref} className="mx-auto mb-14 flex w-[60%] flex-col gap-1">
+    <li
+      ref={ref}
+      className="mx-auto mb-8 flex w-full flex-col gap-1 sm:mb-14 sm:w-[88%] lg:w-[70%]"
+    >
       <ShowCaseLiIcon iconRef={ref} />
       <motion.div
         initial={{ y: 50, opacity: 0 }}
@@ -62,15 +65,15 @@ export default function ExperienceShowcaseListItem(
           type: "spring",
           duration: 0.6,
         }}
-        className="rounded-xl border-2 border-accent/20 bg-gradient-to-br from-background to-accent/5 p-4 shadow-lg transition-all duration-300 hover:scale-[1.02] hover:border-accent/40 hover:shadow-xl dark:from-zinc-900 dark:to-accent/10"
+        className="dream-card ml-7 rounded-2xl p-4 shadow-lg transition-all duration-300 hover:shadow-xl sm:ml-0 sm:rounded-[1.75rem] sm:p-6 sm:hover:scale-[1.02]"
       >
-        <h3 className="text-base font-bold text-foreground sm:text-xl md:text-2xl">
+        <h3 className="break-words text-base font-bold leading-snug text-foreground sm:text-xl md:text-2xl">
           {props.title}{" "}
           <Link
             href={props.organisation.href}
-            className="cursor-pointer bg-gradient-to-r from-accent to-purple-600 bg-clip-text text-transparent transition-all hover:underline"
+            className="cursor-pointer bg-gradient-to-r from-accent via-violet-500 to-cyan-400 bg-clip-text text-transparent transition-all hover:underline"
             target="_blank"
-            rel="nofollow"
+            rel="nofollow noopener noreferrer"
           >
             @{props.organisation.name}
           </Link>

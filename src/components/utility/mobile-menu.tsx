@@ -39,12 +39,12 @@ export default function MobileMenu({
             leaveFrom="opacity-100 bottom-[15%]"
             leaveTo="opacity-0 bottom-full"
           >
-            <Dialog.Panel className="pointer-events-none absolute flex min-h-[85%] w-full flex-col items-center justify-center overflow-y-auto rounded-b-2xl border-2 border-accent/20 bg-background px-6 py-8 text-accent shadow-lg shadow-accent/10 md:px-10 md:py-16">
-              <div className="pointer-events-auto flex flex-col items-center gap-6 text-center">
+            <Dialog.Panel className="dream-card pointer-events-none absolute flex max-h-[85dvh] min-h-[60%] w-[calc(100%-1.5rem)] flex-col items-center justify-center overflow-y-auto rounded-[2rem] px-6 py-10 text-accent shadow-xl md:px-10 md:py-16">
+              <div className="pointer-events-auto flex w-full max-w-xs flex-col items-center gap-2 text-center sm:gap-4">
                 {routes.map((link, i) => (
                   <button
                     key={i}
-                    className="group relative py-2 text-3xl font-medium"
+                    className="touch-target group relative flex w-full items-center justify-center py-2 text-2xl font-medium sm:text-3xl"
                     onClick={() => handleClick(link.href)}
                   >
                     <span

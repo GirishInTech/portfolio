@@ -5,6 +5,7 @@ import { motion, useScroll } from "framer-motion";
 import ExperienceShowcaseListItem, {
   type ExperienceShowcaseListItemProps,
 } from "@/components/experience/experience-showcase-list-item";
+import GhostWord from "@/components/ghost-word";
 
 export interface ExperienceShowcaseListProps {
   title: string;
@@ -20,16 +21,17 @@ export default function ExperienceShowcaseList(
     offset: ["start end", "center start"],
   });
   return (
-    <div className="mx-auto my-40 max-w-7xl px-6 sm:px-14 md:my-60 md:px-20">
-      <h2 className="md:mb-30 mb-16 w-full bg-gradient-to-r from-accent via-purple-600 to-blue-600 bg-clip-text text-center text-3xl font-extrabold text-transparent xs:text-4xl sm:text-6xl md:text-8xl">
+    <div className="relative mx-auto my-20 max-w-7xl overflow-hidden px-4 sm:my-32 sm:px-14 md:my-48 md:px-20">
+      <GhostWord word={props.title.toUpperCase()} />
+      <h2 className="relative mb-12 bg-gradient-to-r from-accent via-violet-500 to-cyan-400 bg-clip-text text-center font-display text-4xl font-extrabold text-transparent sm:mb-16 sm:text-6xl md:text-7xl">
         {props.title}
       </h2>
       <div ref={ref} className="relative w-full md:mx-auto md:w-[80%]">
         <motion.div
           style={{ scaleY: scrollYProgress }}
-          className="absolute left-9 top-5 h-full w-[6px] origin-top rounded-lg bg-gradient-to-b from-accent to-purple-600"
+          className="absolute left-[9px] top-2 h-full w-[3px] origin-top rounded-full bg-gradient-to-b from-accent via-violet-500 to-cyan-500 sm:left-9 sm:top-5 sm:w-[5px]"
         ></motion.div>
-        <ul className="ml-4 w-full items-center">
+        <ul className="w-full items-center">
           {props.details.map((_details, index) => (
             <ExperienceShowcaseListItem key={index} {..._details} />
           ))}

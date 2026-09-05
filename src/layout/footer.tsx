@@ -1,5 +1,3 @@
-import { useState } from "react";
-import ContactButton from "@/components/contact-form/contact-button";
 import {
   GithubIcon,
   LinkedinIcon,
@@ -10,52 +8,75 @@ import { siteMetadata } from "@/data/siteMetaData.mjs";
 
 export default function Footer() {
   return (
-    <footer className="flex w-full flex-col items-center gap-20 bg-transparent px-6 py-8 sm:px-14 md:px-20">
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 rounded-3xl bg-gradient-to-br from-accent via-purple-600 to-blue-600 p-8 text-background shadow-2xl sm:p-12 md:gap-12 lg:p-20">
-        <div className="text-center">
-          <span className="inline-block rounded-full bg-background/90 px-4 py-2 text-xs font-bold uppercase tracking-wider text-accent backdrop-blur-sm md:text-sm lg:text-base">
-            Get in touch
-          </span>
-        </div>
-        <div className="mb-6 flex w-full flex-col items-center gap-3 text-center">
-          <div className="flex w-full max-w-md items-center justify-between gap-3 rounded-lg bg-background/5 px-4 py-3">
-            <div className="flex items-center gap-3">
-              <div className="h-6 w-6 text-foreground">
-                <MailIcon className="h-6 w-6" />
-              </div>
-              <a
-                href={`mailto:${siteMetadata.email}`}
-                target="_blank"
-                className="truncate text-sm font-semibold text-foreground sm:text-base"
-              >
-                {siteMetadata.email}
-              </a>
-            </div>
-            <div className="flex items-center gap-3">
-              <CopyEmailButton email={siteMetadata.email} />
-            </div>
+    <footer className="relative flex w-full flex-col items-center gap-12 overflow-hidden px-4 py-8 sm:gap-20 sm:px-14 md:px-20">
+      <div className="dream-ring -left-20 top-10 hidden h-64 w-64 lg:block" />
+      <div className="dream-ring -right-24 bottom-24 hidden h-80 w-80 lg:block" />
+      <section className="dream-card relative mx-auto w-full max-w-7xl overflow-hidden rounded-[2rem] p-6 sm:p-10 lg:p-14">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-20 -top-24 h-64 w-64 rounded-full bg-cyan-400/10 blur-3xl"
+        />
+        <div className="relative flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+          <div className="max-w-xl">
+            <p className="text-xs font-bold uppercase tracking-[0.3em] text-accent">
+              Let&apos;s make something useful
+            </p>
+            <h2 className="mt-3 font-display text-3xl font-black leading-tight text-foreground sm:text-5xl">
+              Have a good problem?
+              <span className="block text-muted-foreground">
+                I&apos;d love to hear it.
+              </span>
+            </h2>
           </div>
-          <div className="flex items-center gap-3">
-            <a
-              href={`tel:${siteMetadata.phone.replace(/\s+/g, "")}`}
-              className="text-sm font-medium text-foreground hover:underline"
-            >
+          <p className="max-w-xs text-sm leading-relaxed text-muted-foreground lg:text-right">
+            No forms, no awkward sales pitch. Pick a door and say hello.
+          </p>
+        </div>
+
+        <div className="relative mt-8 grid gap-3 sm:grid-cols-3">
+          <a
+            href={`mailto:${siteMetadata.email}`}
+            className="group rounded-2xl border border-violet-500/20 bg-violet-500/5 p-4 transition-colors hover:border-violet-500/50 hover:bg-violet-500/10"
+          >
+            <MailIcon className="h-6 w-6 text-violet-600 dark:text-violet-300" />
+            <span className="mt-5 block text-xs font-bold uppercase tracking-wider text-muted-foreground">
+              Email
+            </span>
+            <span className="mt-1 block break-all text-sm font-semibold text-foreground">
+              {siteMetadata.email}
+            </span>
+          </a>
+          <a
+            href={`tel:${siteMetadata.phone.replace(/\s+/g, "")}`}
+            className="group rounded-2xl border border-cyan-500/20 bg-cyan-500/5 p-4 transition-colors hover:border-cyan-500/50 hover:bg-cyan-500/10"
+          >
+            <span className="bg-cyan-500/15 flex h-6 w-6 items-center justify-center rounded-full text-sm font-bold text-cyan-700 dark:text-cyan-300">
+              #
+            </span>
+            <span className="mt-5 block text-xs font-bold uppercase tracking-wider text-muted-foreground">
+              Phone
+            </span>
+            <span className="mt-1 block text-sm font-semibold text-foreground">
               {siteMetadata.phone}
-            </a>
-            <a
-              href={`tel:${siteMetadata.phone.replace(/\s+/g, "")}`}
-              className="inline-flex items-center gap-2 rounded-md bg-accent px-3 py-1 text-sm font-semibold text-accent-foreground transition-opacity duration-150 hover:opacity-90 lg:hidden"
-              aria-label="Call"
-            >
-              Call
-            </a>
-          </div>
+            </span>
+          </a>
+          <a
+            href={siteMetadata.linkedin}
+            target="_blank"
+            rel="noreferrer"
+            className="group rounded-2xl border border-fuchsia-500/20 bg-fuchsia-500/5 p-4 transition-colors hover:border-fuchsia-500/50 hover:bg-fuchsia-500/10"
+          >
+            <LinkedinIcon className="h-6 w-6 text-fuchsia-600 dark:text-fuchsia-300" />
+            <span className="mt-5 block text-xs font-bold uppercase tracking-wider text-muted-foreground">
+              LinkedIn
+            </span>
+            <span className="mt-1 block text-sm font-semibold text-foreground">
+              Let&apos;s connect <span aria-hidden="true">↗</span>
+            </span>
+          </a>
         </div>
-        <div className="flex justify-center">
-          <ContactButton />
-        </div>
-      </div>
-      <div className="flex w-full flex-col items-center justify-between gap-8 text-center  md:flex-row md:justify-between lg:mx-auto lg:max-w-7xl">
+      </section>
+      <div className="flex w-full flex-col items-center justify-between gap-6 text-center sm:gap-8 md:flex-row md:justify-between lg:mx-auto lg:max-w-7xl">
         <span className="text-foreground">©2026 Girish Yandigeri</span>
         <div className="flex gap-8">
           <a
@@ -85,38 +106,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  );
-}
-
-function CopyEmailButton({ email }: { email: string }) {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = async () => {
-    try {
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        await navigator.clipboard.writeText(email);
-      } else {
-        const ta = document.createElement("textarea");
-        ta.value = email;
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand("copy");
-        document.body.removeChild(ta);
-      }
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1500);
-    } catch (e) {
-      // ignore
-    }
-  };
-
-  return (
-    <button
-      onClick={handleCopy}
-      aria-label="Copy email"
-      className="inline-flex items-center gap-2 rounded-md bg-accent px-3 py-1 text-sm font-semibold text-accent-foreground shadow-sm transition-opacity duration-150 hover:opacity-95"
-    >
-      {copied ? "Copied" : "Copy"}
-    </button>
   );
 }

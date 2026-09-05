@@ -1,13 +1,8 @@
-import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { AnimatePresence, motion } from "framer-motion";
-
-import MenuLogo from "@/components/utility/menu-button";
 import ThemeSwitch from "@/components/utility/theme-switch";
 import AnimatedLogo from "@/animation/animated-logo";
-import MobileMenu from "@/components/utility/mobile-menu";
 import { classNames } from "@/utility/classNames";
 
 export type NavbarRoute = {
@@ -24,57 +19,41 @@ export interface NavbarProps {
 export default function Navbar(props: NavbarProps) {
   const pathName = usePathname();
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const toggleModal = () => {
-    setIsModalOpen((prev) => !prev);
-  };
-
   return (
-    <header className="sticky top-0 z-50 mt-2 px-6 py-8 sm:mt-8 sm:px-14 md:px-20">
-      <div className="mx-auto flex items-center justify-between lg:max-w-7xl">
+    <header className="sticky top-0 z-50 border-b border-accent/10 bg-background dark:bg-zinc-950/95 sm:bg-background/80 sm:backdrop-blur-xl sm:dark:bg-zinc-950/70">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-2 px-4 sm:px-6 lg:px-8">
         <Link
           href="/"
-          className="drop-shadow-teralight flex items-center justify-center"
+          className="flex shrink-0 items-center justify-center"
           aria-label="Return to home page"
         >
-          <div className="relative h-12 w-12 sm:h-14 sm:w-14">
+          <div className="relative h-10 w-10 sm:h-11 sm:w-11">
             <AnimatedLogo />
           </div>
         </Link>
-        <nav className="hidden items-center gap-2 rounded-2xl border border-accent/20 bg-background/80 px-3 py-2 shadow-lg backdrop-blur-xl dark:bg-zinc-900/80 md:flex">
-          <ul className="flex gap-2 text-sm font-medium">
-            {props.routes.map((_link, index) => {
+        <nav
+          className="flex min-w-0 items-center gap-1.5 sm:gap-3"
+          aria-label="Primary"
+        >
+          <ul className="border-accent/15 flex min-w-0 items-center gap-0.5 rounded-full border bg-background p-1 sm:gap-1 sm:bg-background/60 sm:backdrop-blur-md sm:dark:bg-zinc-900/60">
+            {props.routes.map((link) => {
+              const isActive = pathName === link.href;
+              // Logo doubles as Home on very small screens.
+              const hideOnTiny =
+                link.href === "/" ? "hidden min-[400px]:block" : "";
               return (
-                <li
-                  key={index}
-                  className="my-3 transition-transform duration-100 hover:scale-[1.1]"
-                >
+                <li key={link.href} className={`min-w-0 ${hideOnTiny}`}>
                   <Link
-                    href={_link.href}
+                    href={link.href}
+                    aria-current={isActive ? "page" : undefined}
                     className={classNames(
-                      pathName === _link.href
-                        ? "font-bold text-accent-foreground"
-                        : "text-foreground hover:text-accent",
-                      "group relative mx-2 rounded-xl px-4 py-2 transition-all duration-300",
+                      "flex min-h-[40px] items-center whitespace-nowrap rounded-full px-2 text-xs font-medium transition-colors sm:px-4 sm:text-sm",
+                      isActive
+                        ? "bg-accent/15 font-semibold text-accent"
+                        : "text-muted-foreground hover:text-foreground",
                     )}
                   >
-                    {_link.href === pathName && (
-                      <motion.span
-                        layoutId="tab-pill"
-                        animate={{
-                          transition: {
-                            x: {
-                              type: "spring",
-                              stiffness: 300,
-                              damping: 30,
-                            },
-                          },
-                        }}
-                        className="absolute inset-0 -z-10 rounded-xl bg-gradient-to-r from-accent to-purple-600 group-hover:from-accent/90 group-hover:to-purple-600/90"
-                      ></motion.span>
-                    )}
-                    {_link.title}
+                    {link.title}
                   </Link>
                 </li>
               );
@@ -82,16 +61,7 @@ export default function Navbar(props: NavbarProps) {
           </ul>
           <ThemeSwitch />
         </nav>
-        <AnimatePresence>
-          <MenuLogo open={isModalOpen} toggle={toggleModal} />
-        </AnimatePresence>
       </div>
-
-      <MobileMenu
-        routes={props.routes}
-        openMenu={isModalOpen}
-        setOpenMenu={setIsModalOpen}
-      />
     </header>
   );
 }

@@ -2,7 +2,7 @@ export const siteMetadata = {
   title: "Girish Yandigeri portfolio",
   author: "Girish Yandigeri",
   headerTitle: "Girish Yandigeri",
-  description: "RISQ Software Engineer at Societe Generale | Backend Developer | Django | Python",
+  description: "Software Engineer at Societe Generale | MCA Graduate RVCE | Python | Django | FastAPI | React",
   language: "en-us",
   theme: "light",
   siteName: "girishyandigeri.me",
@@ -16,7 +16,7 @@ export const siteMetadata = {
   phone: "+91 6362905961",
   github: "https://github.com/GirishInTech",
   twitter: "https://twitter.com/girishyandigeri",
-  linkedin: "https://www.linkedin.com/in/girish-yandigeri-136517200",
+  linkedin: "https://www.linkedin.com/in/girish-yandigeri-136517200/",
   locale: "en-US",
   googleSiteVerification: "_YJlO90eSoye2AQOhbkRAzNbejzCGiTgAD4RNR3NtHc",
 };

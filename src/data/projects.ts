@@ -58,9 +58,9 @@ export const PROJECTS_CARD: ProjectCardProps[] = [
       "/images/projects/images/civicscanmap.png",
     ],
     description: [
-      "Django web app to report cleanliness issues with location, image upload, and status classification.",
-      "Uses Leaflet.js for interactive city map, Cloudinary for storage, and reverse geocoding for addresses.",
-      "Applied DBSCAN clustering to identify and visualize real-time cleanliness hotspots in Bengaluru.",
+      "Full-stack Django + PostgreSQL app to report public cleanliness issues with geolocation, image upload, and status workflow via REST APIs.",
+      "Interactive city map with Leaflet.js, Cloudinary for image uploads, reverse geocoding for addresses, and full admin dashboard deployed on Render.",
+      "Applied DBSCAN clustering to detect and visualize cleanliness hotspots across Bengaluru. Exhibited at State-Level Project Exhibition (BIT).",
     ],
     sourceCodeHref: "https://github.com/GirishInTech/CivicScan",
     liveWebsiteHref: "https://civicscan.onrender.com/",

@@ -7,10 +7,10 @@ export const EDUCATION: ExperienceShowcaseListItemProps[] = [
       name: "RV College of Engineering (RVCE)",
       href: "https://www.rvce.edu.in/",
     },
-    date: "2024 - Ongoing",
+    date: "Dec 2024 - Aug 2026",
     location: "Bengaluru, Karnataka",
     description:
-      "CGPA: 8.62 (2nd Sem). Affiliated to VTU, Belagavi, Karnataka.",
+      "Graduated Aug 8, 2026 with overall CGPA 8.91. PGCET MCA Rank 21. Top 10 Finalist – TeXpedition 2025 (Epsilon India) with ParlorPal, Project Exhibitor – CivicScan at State-Level Exhibition (BIT). Focus: Python, Django, MERN, REST APIs, SQL, OS, DBMS, Networks, AWS, Vertex AI, ML. Certs: NPTEL Research Methodology (Silver Elite 75%), AWS Cloud Technical Essentials, IEEE English for Technical Professionals.",
   },
   {
     title: "Bachelor of Computer Applications (BCA)",
@@ -18,9 +18,9 @@ export const EDUCATION: ExperienceShowcaseListItemProps[] = [
       name: "Basaveshwar Science College",
       href: "https://www.bvvsbscbgk.org/",
     },
-    date: "2021-2024",
+    date: "Oct 2021 - Aug 2024",
     location: "Bagalkot, Karnataka",
     description:
-      "CGPA: 9.06. Affiliated to Rani Channamma University, Belagavi, Karnataka.",
+      "CGPA: 9.06. Affiliated to Rani Channamma University, Belagavi, Karnataka. Activities: Basketball, Anchoring.",
   },
 ];

@@ -10,15 +10,15 @@ export default function About() {
   return (
     <>
       <NextSeo
-        title="About Girish Yandigeri | RISQ Software Engineer at Societe Generale"
-        description="Learn more about Girish Yandigeri, RISQ Software Engineer at Societe Generale Global Solutions Center and MCA student at RVCE. Discover the journey, skills, and passion for building scalable backend systems, cloud computing, and cybersecurity."
+        title="About Girish Yandigeri | Software Engineer at Societe Generale"
+        description="Learn more about Girish Yandigeri, Software Engineer at Societe Generale Global Solution Centre and MCA graduate from RVCE (CGPA 8.91). Discover the journey, skills, and passion for backend engineering, Python, FastAPI, React, cloud and DevOps."
         canonical={`${siteMetadata.siteUrl}/about`}
         openGraph={{
           url: `${siteMetadata.siteUrl}/about`,
           title:
-            "Learn About Girish Yandigeri - RISQ Software Engineer at Societe Generale",
+            "Learn About Girish Yandigeri - Software Engineer at Societe Generale",
           description:
-            "Dive into the story of Girish Yandigeri, RISQ Software Engineer at Societe Generale and MCA student at RVCE. Uncover the experiences, skills, and passion for Django, Python, AWS, and building innovative solutions.",
+            "Dive into the story of Girish Yandigeri, Software Engineer at Societe Generale and MCA graduate from RVCE. Uncover the experiences, skills, and passion for Python, Django, FastAPI, React, AWS, and building innovative solutions.",
           images: [
             {
               url: `${siteMetadata.siteUrl}${siteMetadata.twitterImage}`,
@@ -35,7 +35,7 @@ export default function About() {
           {
             property: "keywords",
             content:
-              "Backend Developer portfolio, Django Developer, Python Developer, AWS, Cloud Computing, Cybersecurity, Machine Learning, MCA Student, RVCE, Karnataka, Full Stack Development",
+              "Software Engineer portfolio, Backend Developer, Python Developer, FastAPI, React, Django Developer, PostgreSQL, Docker, Kubernetes, AWS, Cloud Computing, Machine Learning, MCA Graduate, RVCE, Karnataka, Full Stack Development",
           },
         ]}
       />

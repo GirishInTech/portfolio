@@ -25,6 +25,7 @@ const DuotoneImage: React.FC<DuotoneImageProps> = ({
   const [processedImageUrl, setProcessedImageUrl] = useState<string>("");
 
   useEffect(() => {
+    let cancelled = false;
     const canvas = document.createElement("canvas");
     const ctx = canvas.getContext("2d");
     const img = document.createElement("img");
@@ -103,7 +104,9 @@ const DuotoneImage: React.FC<DuotoneImageProps> = ({
         }
 
         ctx.putImageData(imageData, 0, 0);
-        setProcessedImageUrl(canvas.toDataURL("image/png"));
+        if (!cancelled) {
+          setProcessedImageUrl(canvas.toDataURL("image/png"));
+        }
       }
     };
 
@@ -111,18 +114,9 @@ const DuotoneImage: React.FC<DuotoneImageProps> = ({
     img.src = imgSrc;
 
     return () => {
-      if (processedImageUrl) {
-        URL.revokeObjectURL(processedImageUrl);
-      }
+      cancelled = true;
     };
-  }, [
-    src,
-    lightColor,
-    darkColor,
-    contrastFactor,
-    sharpnessFactor,
-    processedImageUrl,
-  ]);
+  }, [src, lightColor, darkColor, contrastFactor, sharpnessFactor]);
 
   const hexToRgb = (hex: string) => {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);

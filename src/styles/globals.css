@@ -4,27 +4,27 @@
 
 @layer base {
   :root {
-    --background: 38 45% 98%;
-    --foreground: 222 47% 11%;
-    --border: 240 5.9% 90%;
+    --background: 228 32% 97%;
+    --foreground: 232 28% 12%;
+    --border: 228 20% 86%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --accent: 262 83% 58%;
+    --accent: 241 68% 58%;
     --accent-foreground: 0 0% 100%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
+    --muted: 228 24% 91%;
+    --muted-foreground: 228 15% 42%;
   }
 
   .dark {
-    --background: 222 47% 11%;
-    --foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
+    --background: 232 28% 7%;
+    --foreground: 228 35% 94%;
+    --border: 230 18% 19%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --accent: 266 85% 58%;
-    --accent-foreground: 0 0% 100%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
+    --accent: 241 82% 70%;
+    --accent-foreground: 232 28% 9%;
+    --muted: 230 18% 14%;
+    --muted-foreground: 228 15% 66%;
   }
 
   * {
@@ -32,6 +32,23 @@
   }
   body {
     @apply min-h-screen bg-background text-foreground;
+  }
+  ::selection {
+    background: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--accent) / 0.35);
+    border-radius: 8px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--accent) / 0.55);
   }
 }
 
@@ -43,5 +60,463 @@
   .skills-outline-text {
     -webkit-text-stroke: 2px hsl(var(--accent));
     color: transparent;
+  }
+  @media (max-width: 640px) {
+    .text-outline-accent,
+    .skills-outline-text {
+      -webkit-text-stroke-width: 1.25px;
+    }
+  }
+}
+
+/* ---------- Surreal dreamscape design system ---------- */
+
+@keyframes dream-float-a {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(4vw, -3vh, 0) scale(1.12);
+  }
+}
+
+@keyframes dream-float-b {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1.05);
+  }
+  50% {
+    transform: translate3d(-5vw, 4vh, 0) scale(0.94);
+  }
+}
+
+@keyframes dream-spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@layer utilities {
+  /* Fixed full-page backdrop. Rendered once in MainLayout. */
+  .dreamscape {
+    position: fixed;
+    inset: 0;
+    z-index: -10;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .dream-orb {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(90px);
+    opacity: 0.32;
+    will-change: transform;
+  }
+  .dark .dream-orb {
+    opacity: 0.22;
+  }
+
+  .dream-orb-a {
+    width: min(55vw, 480px);
+    height: min(55vw, 480px);
+    left: -12vw;
+    top: -10vh;
+    background: radial-gradient(
+      circle at 35% 35%,
+      hsl(var(--accent) / 0.55),
+      transparent 70%
+    );
+    animation: dream-float-a 16s ease-in-out infinite;
+  }
+  .dream-orb-b {
+    width: min(48vw, 420px);
+    height: min(48vw, 420px);
+    right: -14vw;
+    top: 22vh;
+    background: radial-gradient(
+      circle at 60% 40%,
+      rgba(45, 212, 191, 0.22),
+      transparent 70%
+    );
+    animation: dream-float-b 20s ease-in-out infinite;
+  }
+  .dark .dream-orb-b {
+    background: radial-gradient(
+      circle at 60% 40%,
+      rgba(45, 212, 191, 0.16),
+      transparent 70%
+    );
+  }
+  .dream-orb-c {
+    width: min(60vw, 520px);
+    height: min(60vw, 520px);
+    left: -10vw;
+    bottom: -18vh;
+    background: radial-gradient(
+      circle at 50% 50%,
+      rgba(217, 70, 239, 0.18),
+      transparent 70%
+    );
+    animation: dream-float-b 24s ease-in-out infinite reverse;
+  }
+
+  .dream-ring {
+    position: absolute;
+    border: 1.5px dashed hsl(var(--accent) / 0.35);
+    border-radius: 9999px;
+    animation: dream-spin-slow 60s linear infinite;
+  }
+
+  .dream-moon {
+    position: absolute;
+    border-radius: 9999px;
+    background: radial-gradient(
+      circle at 35% 35%,
+      hsl(var(--accent) / 0.25),
+      hsl(var(--accent) / 0.05) 70%
+    );
+    box-shadow: 0 0 60px hsl(var(--accent) / 0.25);
+  }
+
+  /* Soft glass card used across skills / projects / experience */
+  .dream-card {
+    position: relative;
+    background: linear-gradient(
+      150deg,
+      hsl(var(--background) / 0.85),
+      hsl(190 80% 55% / 0.05) 52%,
+      hsl(270 75% 65% / 0.07)
+    );
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid hsl(228 20% 70% / 0.28);
+    box-shadow: 0 20px 45px -20px hsl(241 68% 58% / 0.18),
+      inset 0 1px 0 hsl(0 0% 100% / 0.25);
+  }
+  .dark .dream-card {
+    background: linear-gradient(
+      150deg,
+      hsl(232 20% 12% / 0.85),
+      hsl(190 75% 50% / 0.06) 52%,
+      hsl(270 70% 60% / 0.1)
+    );
+    box-shadow: 0 20px 50px -18px hsl(241 82% 70% / 0.2),
+      inset 0 1px 0 hsl(0 0% 100% / 0.08);
+  }
+
+  .fluid-display {
+    font-size: clamp(2.5rem, 11vw, 4.5rem);
+    line-height: 1.02;
+  }
+
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+@layer base {
+  html,
+  body {
+    overflow-x: clip;
+  }
+  @supports not (overflow: clip) {
+    html,
+    body {
+      overflow-x: hidden;
+    }
+  }
+}
+
+/* ---------- Dream lab: lucid-dream surrealism ---------- */
+
+@keyframes dream-morph-shape {
+  0%,
+  100% {
+    border-radius: 42% 58% 61% 39% / 45% 42% 58% 55%;
+  }
+  33% {
+    border-radius: 63% 37% 41% 59% / 55% 63% 37% 45%;
+  }
+  66% {
+    border-radius: 37% 63% 55% 45% / 61% 39% 61% 39%;
+  }
+}
+
+@keyframes dream-drift-a {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  33% {
+    transform: translate3d(3vw, -4vh, 0) rotate(42deg);
+  }
+  66% {
+    transform: translate3d(-2vw, 3vh, 0) rotate(-28deg);
+  }
+}
+
+@keyframes dream-drift-b {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translate3d(-4vw, -3vh, 0) rotate(-50deg) scale(1.15);
+  }
+}
+
+@keyframes dream-drift-c {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  33% {
+    transform: translate3d(-3vh, 4vw, 0) rotate(60deg);
+  }
+  66% {
+    transform: translate3d(2vh, -2vw, 0) rotate(-40deg);
+  }
+}
+
+@keyframes dream-letter-wave {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  35% {
+    transform: translateY(-12%) rotate(-6deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+@layer utilities {
+  /* Parallax layer: JS drives --px/--py/--sy on the dreamscape root */
+  .dream-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    transform: translate3d(
+      calc(var(--px, 0) * var(--dx, 0px)),
+      calc(var(--py, 0) * var(--dy, 0px)),
+      0
+    );
+    will-change: transform;
+  }
+
+  /* Deep morphing atmosphere that also shifts with scroll depth */
+  .dream-morph {
+    position: absolute;
+    width: 130vmax;
+    height: 130vmax;
+    left: -25vmax;
+    top: -35vmax;
+    background: radial-gradient(
+        circle at 30% 30%,
+        hsl(var(--accent) / 0.35),
+        transparent 55%
+      ),
+      radial-gradient(
+        circle at 70% 60%,
+        rgba(45, 212, 191, 0.14),
+        transparent 55%
+      ),
+      radial-gradient(
+        circle at 50% 85%,
+        rgba(217, 70, 239, 0.12),
+        transparent 55%
+      );
+    filter: blur(110px) hue-rotate(calc(var(--sy, 0) * 0.03deg));
+    opacity: 0.8;
+    animation: dream-morph-shape 22s ease-in-out infinite;
+    transform: translateY(calc(var(--sy, 0) * 0.06px));
+    will-change: transform, filter;
+  }
+  .dark .dream-morph {
+    opacity: 0.55;
+  }
+
+  /* Floating abstract objects */
+  .floater {
+    position: absolute;
+    will-change: transform;
+  }
+  .floater-a {
+    animation: dream-drift-a 26s ease-in-out infinite;
+  }
+  .floater-b {
+    animation: dream-drift-b 32s ease-in-out infinite;
+  }
+  .floater-c {
+    animation: dream-drift-c 38s ease-in-out infinite;
+  }
+
+  .floater-ring {
+    border: 2px solid hsl(var(--accent) / 0.35);
+    border-radius: 9999px;
+    box-shadow: 0 0 40px hsl(var(--accent) / 0.15),
+      inset 0 0 30px hsl(var(--accent) / 0.1);
+  }
+  .floater-disc {
+    border-radius: 9999px;
+    background: radial-gradient(
+      circle at 35% 30%,
+      hsl(0 0% 100% / 0.5),
+      hsl(var(--accent) / 0.35) 45%,
+      transparent 70%
+    );
+    filter: blur(1px);
+  }
+  .dark .floater-disc {
+    background: radial-gradient(
+      circle at 35% 30%,
+      hsl(var(--accent) / 0.5),
+      hsl(var(--accent) / 0.15) 50%,
+      transparent 70%
+    );
+  }
+  .floater-shard {
+    border: 1.5px solid rgba(45, 212, 191, 0.3);
+    background: linear-gradient(
+      135deg,
+      rgba(45, 212, 191, 0.09),
+      transparent 60%
+    );
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+  }
+
+  /* Cinematic film grain over the page */
+  .dream-grain {
+    position: fixed;
+    inset: 0;
+    z-index: 4;
+    pointer-events: none;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    background-size: 160px 160px;
+  }
+  .dark .dream-grain {
+    opacity: 0.07;
+  }
+
+  /* Oversized ghost typography drifting behind sections */
+  .ghost-word {
+    font-size: clamp(4rem, 17vw, 15rem);
+    line-height: 1;
+    letter-spacing: 0.04em;
+    -webkit-text-stroke: 1.5px hsl(var(--accent) / 0.22);
+    color: transparent;
+  }
+  @media (max-width: 640px) {
+    .ghost-word {
+      -webkit-text-stroke-width: 1px;
+    }
+  }
+
+  /* Interactive hero letters */
+  .dream-letter {
+    display: inline-block;
+    transition: transform 0.35s cubic-bezier(0.34, 1.8, 0.5, 1);
+    cursor: default;
+  }
+  .dream-letter:hover {
+    transform: translateY(-9%) rotate(-5deg) scale(1.05);
+  }
+  .dream-name:hover .dream-letter {
+    animation: dream-letter-wave 0.7s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+
+  /* Dream portal swirl */
+  .portal-swirl {
+    background: conic-gradient(
+      from 0deg,
+      transparent 0deg,
+      hsl(var(--accent) / 0.4) 90deg,
+      transparent 180deg,
+      rgba(217, 70, 239, 0.2) 270deg,
+      transparent 360deg
+    );
+    animation: dream-spin-slow 14s linear infinite;
+  }
+  .portal-swirl-rev {
+    background: conic-gradient(
+      from 180deg,
+      transparent 0deg,
+      rgba(45, 212, 191, 0.2) 100deg,
+      transparent 200deg,
+      hsl(var(--accent) / 0.3) 300deg,
+      transparent 360deg
+    );
+    animation: dream-spin-slow 22s linear infinite reverse;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dream-orb-a,
+  .dream-orb-b,
+  .dream-orb-c,
+  .dream-ring,
+  .dream-morph,
+  .floater-a,
+  .floater-b,
+  .floater-c,
+  .portal-swirl,
+  .portal-swirl-rev,
+  .dream-name:hover .dream-letter,
+  .dream-portal-pulse {
+    animation: none !important;
+  }
+}
+
+/* ---------- Mobile smoothness: blurs are the #1 phone GPU killer ---------- */
+@media (max-width: 640px) {
+  .dream-layer {
+    transform: none;
+    will-change: auto;
+  }
+  .dream-morph,
+  .dream-orb-a,
+  .dream-orb-b,
+  .dream-orb-c,
+  .floater-a,
+  .floater-b,
+  .floater-c {
+    animation: none;
+    will-change: auto;
+  }
+  .dream-morph {
+    width: 100vmax;
+    height: 100vmax;
+    left: -15vmax;
+    top: -20vmax;
+    filter: blur(48px);
+  }
+  .dream-orb {
+    filter: blur(48px);
+    opacity: 0.26;
+  }
+  .dark .dream-orb {
+    opacity: 0.18;
+  }
+  /* Solid cards on phones: no backdrop-filter cost over animating bg */
+  .dream-card {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: hsl(var(--background));
+    box-shadow: 0 12px 30px -18px hsl(var(--accent) / 0.4);
+  }
+  .dark .dream-card {
+    background: hsl(232 20% 12%);
+    box-shadow: 0 12px 30px -14px hsl(0 0% 0% / 0.8);
+  }
+  .dream-grain {
+    display: none;
+  }
+  .dream-portal-pulse {
+    animation: none;
   }
 }

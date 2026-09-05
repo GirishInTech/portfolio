@@ -5,6 +5,7 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 
 import { ArrowTopRight } from "@/components/icons";
+import GhostWord from "@/components/ghost-word";
 import ProjectShowcaseList, {
   type ProjectShowcaseListItem,
 } from "@/components/projects/project-showcase-list";
@@ -30,7 +31,8 @@ export default function ProjectShowcase(props: ProjectShowcaseProps) {
   };
 
   return (
-    <section className="overflow-hidden px-6 py-32 sm:px-14 md:px-20">
+    <section className="relative overflow-hidden px-4 py-16 sm:px-14 sm:py-24 md:px-20 lg:py-32">
+      <GhostWord word="DREAM" />
       <div className="relative mx-auto max-w-7xl">
         <div className="relative right-0 top-0 hidden lg:block">
           <AnimatePresence>
@@ -54,18 +56,18 @@ export default function ProjectShowcase(props: ProjectShowcaseProps) {
               >
                 <Image
                   src={images[currentImage].LIGHT}
-                  unoptimized
-                  width={100}
-                  height={100}
+                  width={800}
+                  height={450}
+                  sizes="(max-width: 1280px) 40vw, 480px"
                   className="h-auto w-1/2 rounded-lg border border-zinc-300 shadow-lg dark:hidden dark:border-accent/50"
                   alt={`project ${currentImage}`}
                 />
                 {images[currentImage].DARK !== undefined && (
                   <Image
                     src={images[currentImage].DARK!}
-                    unoptimized
-                    width={100}
-                    height={100}
+                    width={800}
+                    height={450}
+                    sizes="(max-width: 1280px) 40vw, 480px"
                     className="hidden h-auto w-1/2 rounded-lg border border-zinc-300 shadow-lg dark:inline-block dark:border-accent/20 dark:shadow-lg dark:shadow-emerald-400/5"
                     alt={`project ${currentImage}`}
                   />
@@ -74,7 +76,7 @@ export default function ProjectShowcase(props: ProjectShowcaseProps) {
             )}
           </AnimatePresence>
         </div>
-        <h2 className="bg-gradient-to-r from-accent to-purple-600 bg-clip-text text-2xl font-bold text-transparent sm:text-4xl">
+        <h2 className="bg-gradient-to-r from-accent via-violet-500 to-cyan-400 bg-clip-text font-display text-3xl font-bold text-transparent sm:text-4xl">
           Featured Projects
         </h2>
         <div className="hidden flex-col gap-6 py-14 sm:gap-8 sm:py-20 md:gap-10 lg:flex">
@@ -87,36 +89,43 @@ export default function ProjectShowcase(props: ProjectShowcaseProps) {
             />
           ))}
         </div>
-        <div className="flex flex-col gap-4 py-14 sm:gap-8 sm:py-20 md:gap-10 lg:hidden">
+        <div className="flex flex-col gap-4 py-10 sm:gap-6 sm:py-14 md:gap-8 lg:hidden">
           {props.projects.map((proj) => (
             <Link
               key={proj.title}
               href={proj.href}
-              className="flex flex-col gap-3"
+              className="dream-card flex flex-col gap-3 rounded-[1.75rem] p-4 sm:p-5"
             >
-              <div className="flex gap-2">
-                <span className="text-3xl font-semibold text-accent transition-colors duration-300 sm:text-4xl md:text-5xl lg:hidden">
+              <div className="flex flex-wrap items-baseline gap-2">
+                <span className="text-2xl font-semibold text-accent transition-colors duration-300 sm:text-4xl">
                   {proj.index + 1}.
                 </span>
                 <span
                   key={proj.title}
-                  className="-underline-offset-1 text-3xl font-semibold text-accent underline transition-colors duration-300 sm:text-4xl md:text-5xl lg:hidden"
+                  className="min-w-0 flex-1 break-words text-2xl font-semibold text-accent transition-colors duration-300 sm:text-4xl"
                 >
                   {proj.title}
                 </span>
               </div>
               {/* Project image */}
               {proj.image?.LIGHT && (
-                <img
+                <Image
                   src={proj.image.LIGHT}
                   alt={proj.title + " image"}
-                  className="my-2 w-full max-w-xs self-center rounded-lg border border-zinc-300 shadow-md"
-                  style={{ maxHeight: "180px", objectFit: "cover" }}
+                  width={1280}
+                  height={720}
+                  sizes="(max-width: 640px) 100vw, 768px"
+                  className="my-2 h-auto w-full rounded-2xl border border-accent/20 object-cover shadow-md"
                 />
               )}
-              <p className="flex max-w-xl flex-wrap gap-2 text-base font-semibold text-accent-foreground sm:text-lg">
+              <p className="flex max-w-xl flex-wrap gap-2 text-sm font-medium text-muted-foreground sm:text-base">
                 {proj.tags.map((tag, index) => (
-                  <span key={index}>#{tag}</span>
+                  <span
+                    key={index}
+                    className="rounded-full bg-teal-600/10 px-2.5 py-0.5"
+                  >
+                    #{tag}
+                  </span>
                 ))}
               </p>
             </Link>

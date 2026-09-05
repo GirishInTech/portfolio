@@ -12,6 +12,13 @@ export default function CursorTrailCanvas(props: CursorTrailCanvasProps) {
   const refCanvas = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
+    if (!refCanvas.current?.getContext("2d")) {
+      return;
+    }
+
     const { cleanUp, renderTrailCursor } = cursorTrail({
       ref: refCanvas,
       color: props.color,

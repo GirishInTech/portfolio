@@ -2,9 +2,9 @@ import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
   return (
-    <Html lang="en">
+    <Html lang="en" suppressHydrationWarning>
       <Head />
-      <body className="bg-background text-zinc-950 antialiased selection:bg-accent selection:text-background">
+      <body className="antialiased">
         <Main />
         <NextScript />
       </body>

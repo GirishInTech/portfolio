@@ -8,8 +8,7 @@ export default function AnimatedLogo() {
     },
     visible: {
       pathLength: 1,
-      // Set fill as per your theme - Updated for purple gradient theme with transparency
-      fill: "rgba(139, 92, 246, 0.7)",
+      fill: "rgba(99, 102, 241, 0.75)",
     },
   };
 

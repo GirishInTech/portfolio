@@ -1,6 +1,12 @@
 import { useState, useEffect } from "react";
 
-import { AnimatePresence, AnimationProps, motion, wrap } from "framer-motion";
+import {
+  AnimatePresence,
+  AnimationProps,
+  motion,
+  useReducedMotion,
+  wrap,
+} from "framer-motion";
 import { BiSolidLeftArrow } from "react-icons/bi";
 
 import { classNames } from "@/utility/classNames";
@@ -45,20 +51,43 @@ export default function Corosel({
   interval = 3000,
 }: CoroselProps) {
   const [[page, direction], setPage] = useState([0, 0]);
+  const reduceMotion = useReducedMotion();
 
   const imageIndex = wrap(0, images.length, page);
 
   const paginate = (newDirection: number) => {
-    setPage([page + newDirection, newDirection]);
+    setPage(([currentPage]) => [currentPage + newDirection, newDirection]);
   };
 
   useEffect(() => {
-    if (!autoPlay || images.length <= 1) return;
-    const timer = setInterval(() => {
-      setPage(([prevPage]) => [prevPage + 1, 1]);
-    }, interval);
-    return () => clearInterval(timer);
-  }, [autoPlay, interval, images.length]);
+    if (reduceMotion || !autoPlay || images.length <= 1) return;
+
+    let timer: number | undefined;
+    const start = () => {
+      if (timer === undefined && !document.hidden) {
+        timer = window.setInterval(() => {
+          setPage(([prevPage]) => [prevPage + 1, 1]);
+        }, interval);
+      }
+    };
+    const stop = () => {
+      if (timer !== undefined) {
+        window.clearInterval(timer);
+        timer = undefined;
+      }
+    };
+    const onVisibilityChange = () => {
+      if (document.hidden) stop();
+      else start();
+    };
+
+    start();
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    return () => {
+      stop();
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+    };
+  }, [autoPlay, interval, images.length, reduceMotion]);
 
   return (
     <div className="relative w-full overflow-hidden" style={{ aspectRatio }}>

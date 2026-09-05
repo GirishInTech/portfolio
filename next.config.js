@@ -13,6 +13,7 @@ if (process.env.ANALYZE === "true") {
 const nextConfig = withBundleAnalyzer({
   output: process.env.BUILD_STANDALONE === "true" ? "standalone" : undefined,
   reactStrictMode: true,
+  poweredByHeader: false,
   pageExtensions: ["ts", "tsx", "js"],
   eslint: {
     dirs: ["src"],

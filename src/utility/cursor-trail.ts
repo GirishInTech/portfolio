@@ -28,6 +28,7 @@ export function cursorTrail(props: CursorTrail) {
   };
 
   let running = true;
+  let animationFrame = 0;
 
   class NewNode {
     x: number;
@@ -111,7 +112,7 @@ export function cursorTrail(props: CursorTrail) {
   }
 
   function renderAnimation() {
-    if (running) {
+    if (running && animationFrame === 0 && newLines.length > 0) {
       ctx.globalCompositeOperation = "source-over";
       ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
       ctx.globalCompositeOperation = "lighter";
@@ -124,7 +125,10 @@ export function cursorTrail(props: CursorTrail) {
           x.draw();
         }
       }
-      window.requestAnimationFrame(renderAnimation);
+      animationFrame = window.requestAnimationFrame(() => {
+        animationFrame = 0;
+        renderAnimation();
+      });
     }
   }
 
@@ -136,7 +140,7 @@ export function cursorTrail(props: CursorTrail) {
         (cursorPosition.y = event.touches[0].pageY))
       : ((cursorPosition.x = event.clientX),
         (cursorPosition.y = event.clientY));
-    event.preventDefault();
+    renderAnimation();
   }
 
   function createLine(event: TouchEvent) {
@@ -157,9 +161,9 @@ export function cursorTrail(props: CursorTrail) {
 
     document.removeEventListener("mousemove", onMouseMove);
     document.removeEventListener("touchstart", onMouseMove);
-    document.addEventListener("mousemove", move);
-    document.addEventListener("touchmove", createLine);
-    document.addEventListener("touchstart", createLine);
+    document.addEventListener("mousemove", move, { passive: true });
+    document.addEventListener("touchmove", createLine, { passive: true });
+    document.addEventListener("touchstart", createLine, { passive: true });
     move(e);
     populateLines();
     renderAnimation();
@@ -172,6 +176,10 @@ export function cursorTrail(props: CursorTrail) {
 
   function stopAnimation() {
     running = false;
+    if (animationFrame !== 0) {
+      window.cancelAnimationFrame(animationFrame);
+      animationFrame = 0;
+    }
   }
 
   function startAnimation() {
@@ -182,8 +190,8 @@ export function cursorTrail(props: CursorTrail) {
   }
 
   function renderTrailCursor() {
-    document.addEventListener("mousemove", onMouseMove);
-    document.addEventListener("touchstart", onMouseMove);
+    document.addEventListener("mousemove", onMouseMove, { passive: true });
+    document.addEventListener("touchstart", onMouseMove, { passive: true });
     window.addEventListener("orientationchange", resizeCanvas);
     window.addEventListener("resize", resizeCanvas);
     // window.addEventListener("scroll", trackYScroll);
@@ -193,6 +201,7 @@ export function cursorTrail(props: CursorTrail) {
   }
 
   function cleanUp() {
+    stopAnimation();
     document.removeEventListener("mousemove", move);
     document.removeEventListener("touchmove", createLine);
     document.removeEventListener("touchstart", createLine);

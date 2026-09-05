@@ -1,11 +1,16 @@
 import {
   SiDjango,
+  SiFastapi,
+  SiReact,
+  SiNodedotjs,
   SiNumpy,
   SiPandas,
   SiScikitlearn,
   SiJupyter,
   SiGooglecloud,
   SiPostgresql,
+  SiDocker,
+  SiKubernetes,
 } from "react-icons/si";
 import { type SkillsShowcaseProps } from "@/components/skills/skills-showcase";
 
@@ -38,6 +43,18 @@ export const SKILLS_DATA: SkillsShowcaseProps["skills"] = [
         icon: SiDjango,
       },
       {
+        name: "FastAPI",
+        icon: SiFastapi,
+      },
+      {
+        name: "React",
+        icon: SiReact,
+      },
+      {
+        name: "Node.js",
+        icon: SiNodedotjs,
+      },
+      {
         name: "NumPy",
         icon: SiNumpy,
       },
@@ -52,8 +69,20 @@ export const SKILLS_DATA: SkillsShowcaseProps["skills"] = [
     ],
   },
   {
-    sectionName: "Tools & Technologies",
+    sectionName: "Databases & DevOps",
     skills: [
+      {
+        name: "PostgreSQL",
+        icon: SiPostgresql,
+      },
+      {
+        name: "Docker",
+        icon: SiDocker,
+      },
+      {
+        name: "Kubernetes",
+        icon: SiKubernetes,
+      },
       {
         name: "Git",
         icon: GitSvg,
@@ -70,14 +99,6 @@ export const SKILLS_DATA: SkillsShowcaseProps["skills"] = [
         name: "NeoLoad",
         icon: SiGooglecloud,
       },
-      {
-        name: "Cloudinary",
-        icon: SiGooglecloud,
-      },
-      {
-        name: "Gmail SMTP",
-        icon: SiGooglecloud,
-      },
     ],
   },
   {
@@ -89,6 +110,10 @@ export const SKILLS_DATA: SkillsShowcaseProps["skills"] = [
       },
       {
         name: "Google Vertex AI",
+        icon: SiGooglecloud,
+      },
+      {
+        name: "Cloudinary",
         icon: SiGooglecloud,
       },
       {
